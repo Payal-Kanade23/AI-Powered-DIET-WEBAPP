@@ -110,8 +110,8 @@ const listVariants = {
       
 
       <div className='flex flex-col '>
-              <div >
-                         <img src={h6} alt="doctor" className='w-full h-124 object-cover'></img>
+              <div>
+              <img src={h6} alt="doctor" className='w-full h-124 object-cover'></img>
                           
     </div>
           

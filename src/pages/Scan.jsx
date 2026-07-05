@@ -189,7 +189,7 @@ export default function Scan() {
   {/* Scan Card */}
   {!showCamera && !preview && (
     <div
-      onClick={handleScanClick}
+      onClick={hand.leScanClick}
       className="w-80 h-80 border-2 border-dashed border-green-500 rounded-3xl
       flex flex-col justify-center items-center cursor-pointer
       hover:bg-green-50 hover:scale-105 transition-all duration-300 shadow-lg"
@@ -234,7 +234,7 @@ export default function Scan() {
           onClick={() => setShowCamera(false)}
           className="bg-red-500 text-white px-6 py-3 rounded-xl hover:bg-red-600"
         >
-          Cancel
+          Cancel 
         </button>
 
       </div>
