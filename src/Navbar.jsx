@@ -1,46 +1,10 @@
-import React from 'react';
-import { Link , useLocation} from 'react-router-dom';
-import { useEffect , useState } from 'react';
+import { FaCalendarDay, FaCamera, FaLeaf } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import logo from "./assets/green-logo-transparent-background_943194-17985.avif";
 
-import logo from "./assets/green-logo-transparent-background_943194-17985.avif"
-function Navbar() {
+const links = [{ to: "/", label: "Home" }, { to: "/scan", label: "Scan", icon: FaCamera }, { to: "/daily", label: "Daily Goal", icon: FaCalendarDay }, { to: "/week", label: "Weekly Guide" }, { to: "/topic", label: "Learn" }];
+
+export default function Navbar() {
   const { pathname } = useLocation();
-  const isHome = pathname === "/"
-  const [scrolled , setScrolled] = useState(false);
-  useEffect(()=>{
-    const handleScroll = () =>{
-      setScrolled(window.scrollY > 80);
-    }
-    window.addEventListener("scroll" , handleScroll);
-    return ()=> window.removeEventListener("scroll",handleScroll);
-  },[])
-  const transparent = isHome && !scrolled; 
-  return (
-  
-      
-<div  className={`fixed flex justify-start items-center text-xl px-10 space-x-80 gap-50 w-full h-[70px] z-50 transition-all duration-300 ${
-        transparent
-          ? "bg-transparent text-white"
-          : "bg-green-900 text-white shadow-md"
-      }`}>
-
-  <div >
-        <img src={logo} className='h-[50px] w-[50px] rounded-full'></img>
-  </div>
-        <div className='flex justify-space gap-10'>
-           <Link to="/">Home</Link>
-            <Link to="/topic">Category</Link>
-
-      <Link to="/scan">Scan</Link>
-
-      <Link to="/about">About</Link>
-        </div>
-        
-        
-
-    </div>
-
-  );
+  return <nav className="fixed inset-x-0 top-0 z-50 border-b border-green-950/10 bg-green-950 text-white shadow-sm"><div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 md:px-6"><Link to="/" className="flex shrink-0 items-center gap-2 font-bold"><img src={logo} alt="Diet app" className="h-10 w-10 rounded-full" /><span className="hidden sm:inline">NutriGuide</span><FaLeaf className="text-green-300" /></Link><div className="flex items-center gap-1 overflow-x-auto text-sm font-medium whitespace-nowrap">{links.map(({ to, label, icon: Icon }) => <Link key={to} to={to} className={`rounded-lg px-3 py-2 transition ${pathname === to ? "bg-white/15 text-white" : "text-green-100 hover:bg-white/10 hover:text-white"}`}>{Icon && <Icon className="inline mr-1.5" />}{label}</Link>)}</div></div></nav>;
 }
-
-export default Navbar;

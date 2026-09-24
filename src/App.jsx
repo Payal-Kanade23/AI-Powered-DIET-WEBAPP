@@ -7,6 +7,9 @@ import Navbar from "./Navbar"
 import Footer from "./pages/Footer"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
+import ProfileForm from "./pages/ProfileForm"
+import DailyAnalytics from "./pages/DailyAnalytics"
+import WeeklyPlan from "./pages/WeeklyPlan"
 
 function App() {
 
@@ -22,6 +25,10 @@ function App() {
     <Route path="/topic" element={<Topic/>}/>
     <Route path="/register" element={<Register/>}/>
     <Route path="/login" element={<Login/>}/>
+    <Route path="/form" element={<ProfileForm/>}/>
+    <Route path="/daily" element={<DailyAnalytics/>}/>
+        <Route path="/week" element={<WeeklyPlan/>}/>
+
 
    </Routes>
    <Footer/>

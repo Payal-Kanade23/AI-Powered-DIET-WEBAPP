@@ -27,7 +27,7 @@ function Login() {
     // axios.post("http://localhost:5000/alogin", form)
 
     try{
-
+console.log("hello")
       const res = await axios.post("http://localhost:5000/api/food/login", form)
       console.log(res.data);
       alert(res.data.message)

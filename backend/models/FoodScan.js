@@ -22,5 +22,8 @@ const foodScanSchema = new mongoose.Schema({
     timestamps:true,
 })
 
+// Keeps local-day dashboard queries fast as a user's scan history grows.
+foodScanSchema.index({ user: 1, createdAt: -1 });
+
 const FoodScan = new mongoose.model("FoodScan", foodScanSchema);
 export default FoodScan;

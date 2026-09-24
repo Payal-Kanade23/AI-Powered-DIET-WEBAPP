@@ -21,6 +21,7 @@ export const registerUser = async(req, res)=>{
             password: hashPassword,
         });
 
+        console.log("jfjgxdf",user)
         const token = jwt.sign(
             {id:user._id},
             process.env.JWT_SECRET,
@@ -43,6 +44,7 @@ export const registerUser = async(req, res)=>{
 export const loginUser = async(req, res)=>{
     try{
         const { email , password } = req.body;
+        
         if(!email || !password){
            return res.status(400).json({message:"Please fill all field"})
         }

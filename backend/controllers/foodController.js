@@ -1,6 +1,7 @@
 import fs from "fs";
 import FoodScan from "../../backend/models/FoodScan.js";
 import { GoogleGenAI, Type } from "@google/genai";
+import { getLocalDayRange, requestTimeZone } from "../utils/localDay.js";
 
 // Initialize outside the handler so you don't recreate it on every request
 
@@ -92,5 +93,15 @@ export const getHistory = async (req, res) => {
     res.status(500).json({
       message: error.message,
     });
+  }
+};
+
+export const getTodayScans = async (req, res) => {
+  try {
+    const { start, end, timeZone, date } = getLocalDayRange(requestTimeZone(req));
+    const scans = await FoodScan.find({ user: req.user.id, createdAt: { $gte: start, $lt: end } }).sort({ createdAt: -1 });
+    res.json({ scans, date, timeZone });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to load today's scans." });
   }
 };
